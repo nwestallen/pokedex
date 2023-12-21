@@ -3,8 +3,10 @@
             [helix.hooks :as hooks]
             [helix.dom :as d]))
 
-(defnc monitor [{:keys [sprite]}]
-  (d/div {:class-name "relative"}
-   (d/img {:src "Pokedex.svg" :class-name "absolute"})
-    (d/div {:class-name "absolute bg-opacity-50 bg-lime-500 border border-black w-[290px] mx-[82px] my-[250px] h-[233px] rounded-xl"}
-      (d/img {:src sprite :class-name "max-w-full max-h-full"}))))
+(defnc monitor [{:keys [sprite open?]}]
+  (if open?
+  (d/div {:class-name "relative h-full"}
+   (d/img {:src "Open Pokedex.svg" :class-name "absolute max-w-full max-h-full"})
+    (d/div {:class-name "absolute bg-opacity-0 bg-lime-500 w-[27%] h-[32%] mt-[250px] ml-[10%] rounded-xl"}
+      (d/img {:src sprite :class-name "max-w-full max-h-full"})))
+  (d/img {:src "Closed Pokedex.svg"})))

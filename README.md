@@ -1,5 +1,5 @@
-# s(hadow-cljs)h(elix)t(ailwind)-template
-This is a clojurescript react project template that uses [shadow-cljs](https://github.com/thheller/shadow-cljs) for builds & dependency management, [helix](https://github.com/lilactown/helix) as the react wrapper, and [tailwind](https://tailwindcss.com/) for styling
+# Pokedex
+This is just for fun/learning, primarily Clojure(Script)!
 ## Quick Start
 1. Clone this template into your local
 2. Cd into sht-template directory and run `npm i` in your terminal
