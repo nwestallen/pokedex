@@ -15,7 +15,7 @@
       (d/div (d/button {:class-name "bg-blue-500 rounded-xl p-2 m-3"
                         :on-click #(set-state assoc :open? (not (:open? state)))}"Open/Close")
         (d/button {:class-name "bg-blue-500 rounded-xl p-2 m-3"
-                   :on-click #(set-state assoc :sprite "../dragonite.png")} "Change Sprite"))
+                   :on-click #(set-state assoc :sprite "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/177.png")} "Change Sprite"))
       )))
 
 

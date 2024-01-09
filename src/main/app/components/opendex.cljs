@@ -59,6 +59,6 @@
  (d/path {:d "M354.268 581C355.038 579.667 356.962 579.667 357.732 581L364.66 593C365.43 594.333 364.468 596 362.928 596H349.072C347.532 596 346.57 594.333 347.34 593L354.268 581Z", :fill "#514B4B"})
   (d/path {:d "M354.268 665C355.038 666.333 356.962 666.333 357.732 665L364.66 653C365.43 651.667 364.468 650 362.928 650H349.072C347.532 650 346.57 651.667 347.34 653L354.268 665Z", :fill "#514B4B"})
    )
-    (d/div {:class-name (str "border-0 border-amber-300 w-[270px] h-[220px] bg-contain bg-no-repeat absolute z-20 mx-[85px] my-[255px] bg-center" " bg-[url('" sprite "')]")}))
-  ;;bg-[url('../dragonite.png')]
+    (d/div {:class-name "border-0 border-amber-300 w-[270px] h-[220px] bg-contain bg-no-repeat absolute z-20 mx-[85px] my-[255px]"}
+      (d/img {:src sprite :class-name "w-[100%] h-[100%] object-contain"})))
   )
