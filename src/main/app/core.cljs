@@ -5,19 +5,43 @@
             ["react-dom/client" :as rdom]
             [app.components.dex :refer [dex]]))
 
+(def baseurl "https://pokeapi.co/api/v2/pokemon/")
+
 (defnc app []
   {:helix/features {:fast-refresh true}}
-  (let [[state set-state] (hooks/use-state {:open? false :sprite "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/373.png"})]
+
+  (let [[sprite set-sprite] (hooks/use-state "dragonite.png")
+        [open? set-open?] (hooks/use-state false)
+        [pokemon set-pokemon] (hooks/use-state {:name "none"})
+        [query set-query] (hooks/use-state "")]
+
     (d/div {:class-name "h-screen"}
      (d/h1 {:class-name "text-4xl font-bold p-5 bg-green-500"} "Pokedex")
       (d/div {:class-name "relative p-5 h-3/4"}
-        ($ dex {:sprite (:sprite state) :open? (:open? state)}))
-      (d/div (d/button {:class-name "bg-blue-500 rounded-xl p-2 m-3"
-                        :on-click #(set-state assoc :open? (not (:open? state)))}"Open/Close")
+        ($ dex {:sprite (:front_default (:sprites pokemon)) :open? open?}))
+      (d/div
         (d/button {:class-name "bg-blue-500 rounded-xl p-2 m-3"
-                   :on-click #(set-state assoc :sprite "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/177.png")} "Change Sprite"))
-      )))
+                        :on-click #(set-open? (not open?))}"Open/Close")
+        )
+      (d/form {:on-submit (fn [e] (do
+                                   (.preventDefault e)
+                                   (-> (js/fetch (str baseurl query))
+                                       (.then #(.json %))
+                                       (.then #(js->clj % :keywordize-keys true))
+                                       (.then #(set-pokemon %))
+                                       (.catch #(js/console.log "pokemon not found")))))}
+        (d/input {:type "text" :class-name "border-2 border-slate-950 mx-2" :value query :on-change (fn [e] (set-query e.target.value))})
+        (d/button {:class-name "bg-purple-600 text-white rounded-xl p-2" :type "submit"} "Search"))
+      (d/p (str "Current Pokemon: " (:name pokemon))))))
 
+(comment
+  (-> (js/fetch (str baseurl "149"))
+      (.then #(.json %))
+      (.then #(js->clj % :keywordize-keys true))
+      (.then #(:name %))
+      (.then #(js/console.log %))
+      (.catch #(js/console.log "pokemon not found")))
+  )
 
 ;; start your app with your favorite React renderer
 (defn ^:export init []
