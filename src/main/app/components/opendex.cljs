@@ -2,7 +2,7 @@
   (:require [helix.core :refer [defnc $]]
             [helix.hooks :as hooks]
             [helix.dom :as d]))
-(defnc opendex [{:keys [sprite]}]
+(defnc opendex [{:keys [pokemon]}]
   (d/div {:class-name "relative border-0 border-black h-[707px]"}
 (d/svg {:width "964", :height "707", :viewBox "0 0 964 707", :fill "none", :xmlns "http://www.w3.org/2000/svg" :class-name "absolute z-10"}
  (d/rect {:x "1", :y "1", :width "514", :height "705", :rx "17", :fill "#F13030", :stroke "black", :stroke-width "2"})
@@ -20,7 +20,8 @@
  (d/circle {:cx "153.5", :cy "37.5", :r "6.5", :fill "#FF0000", :stroke "black", :stroke-width "2"})
  (d/circle {:cx "201.5", :cy "37.5", :r "6.5", :fill "#24922F", :stroke "black", :stroke-width "2"})
  (d/circle {:cx "177.5", :cy "37.5", :r "6.5", :fill "#F6E65B", :stroke "black", :stroke-width "2"})
- (d/rect {:x "114", :y "587", :width "160", :height "70", :rx "6", :fill "#64B876", :stroke "#393434", :stroke-width "2"})
+ (d/rect {:id "greenscreen" :x "114", :y "587", :width "160", :height "70", :rx "6", :fill "#64B876", :stroke "#393434", :stroke-width "2"})
+  (d/text {:x "190" :y "635" :text-anchor "middle" :class-name "fill-slate-700 text-4xl font-mono"} (:id pokemon))
  (d/path {:d "M2 131H198.203C201.671 131 205.065 129.998 207.977 128.115L291.838 73.8851C294.75 72.0018 298.144 71 301.612 71H514", :stroke "black", :stroke-width "2"})
  (d/rect {:x "207.5", :y "557.5", :width "77", :height "6", :rx "3", :fill "#393434", :stroke "black"})
  (d/rect {:x "98.5", :y "557.5", :width "78", :height "6", :rx "3", :fill "#D5002C", :stroke "black"})
@@ -60,5 +61,5 @@
   (d/path {:d "M354.268 665C355.038 666.333 356.962 666.333 357.732 665L364.66 653C365.43 651.667 364.468 650 362.928 650H349.072C347.532 650 346.57 651.667 347.34 653L354.268 665Z", :fill "#514B4B"})
    )
     (d/div {:class-name "border-0 border-amber-300 w-[270px] h-[220px] bg-contain bg-no-repeat absolute z-20 mx-[85px] my-[255px]"}
-      (d/img {:src sprite :class-name "w-[100%] h-[100%] object-contain"})))
+      (d/img {:src (:front_default (:sprites pokemon)) :class-name "w-[100%] h-[100%] object-contain"})))
   )

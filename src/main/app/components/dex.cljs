@@ -4,7 +4,7 @@
             [helix.dom :as d]
             [app.components.opendex :refer [opendex]]))
 
-(defnc dex [{:keys [sprite open?]}]
+(defnc dex [{:keys [pokemon open?]}]
   (if open?
-  (d/div {:class-name "relative h-full"} ($ opendex {:sprite sprite}))
+    (d/div {:class-name "relative h-full"} ($ opendex {:pokemon pokemon}))
   (d/img {:src "ClosedPokedex.svg"})))
