@@ -7,5 +7,5 @@
 
 (defnc dex [{:keys [pokemon open?]}]
   (if open?
-    (d/div {:class-name "relative h-full"} ($ opendex {:pokemon pokemon}))
-  (d/img {:src "ClosedPokedex.svg"})))
+    (d/div {:class-name "p-4 border-black border-2 w-[990px] h-fit"}($ opendex {:pokemon pokemon}))
+    (d/img {:src "ClosedPokedex.svg" :class-name "p-4 border-black border-2"})))

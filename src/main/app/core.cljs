@@ -17,9 +17,10 @@
 
     (d/div {:class-name "h-screen"}
      (d/h1 {:class-name "text-4xl font-bold p-5 bg-green-600"} "Pokedex")
-      (d/div {:class-name "relative p-5 h-3/4 flex"}
-        ($ dex {:pokemon pokemon :open? open?})
-        ($ statchart))
+      (d/div {:class-name "flex border-2 border-black w-3/4"}
+      (d/div {:class-name "p-5 h-3/4"}
+        ($ dex {:pokemon pokemon :open? open?}))
+        ($ statchart {:stats (reverse (map :base_stat (:stats pokemon)))}))
       (d/div
         (d/button {:class-name "bg-blue-500 rounded-xl p-2 m-3"
                         :on-click #(set-open? (not open?))}"Open/Close")
