@@ -1,10 +1,11 @@
 (ns app.core
-  (:require [helix.core :refer [defnc $]]
+  (:require [helix.core :refer [defnc $ <>]]
             [helix.hooks :as hooks]
             [helix.dom :as d]
             ["react-dom/client" :as rdom]
             [app.components.dex :refer [dex]]
-            [app.components.statchart :refer [statchart]]))
+            [app.components.statchart :refer [statchart]]
+            [app.components.typeicon :refer [typeicon]]))
 
 (def baseurl "https://pokeapi.co/api/v2/pokemon/")
 
@@ -20,7 +21,12 @@
       (d/div {:class-name "flex border-2 border-black w-3/4"}
       (d/div {:class-name "p-5 h-3/4"}
         ($ dex {:pokemon pokemon :open? open?}))
-        ($ statchart {:stats (reverse (map :base_stat (:stats pokemon)))}))
+        (if (contains? pokemon :forms)
+        (<>
+        ($ statchart {:stats (reverse (map :base_stat (:stats pokemon)))})
+        (map #($ typeicon {:type (keyword (:name (:type %)))}) (:types pokemon))
+        )
+        ))
       (d/div
         (d/button {:class-name "bg-blue-500 rounded-xl p-2 m-3"
                         :on-click #(set-open? (not open?))}"Open/Close")
