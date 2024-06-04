@@ -14,4 +14,5 @@
                            :color #js["SteelBlue", "YellowGreen", "Violet", "Gold", "Tomato", "DarkTurquoise"]}
                            :width "1/2"
                            :orientation "h"}]
-             :layout #js{:width 640 :height 480 :title "Base Stats" :barcornerradius "9" :xaxis #js{:range #js[0, 150]}}})))
+             :layout #js{:width 640 :height 480 :title "Base Stats" :barcornerradius "9" :xaxis #js{:range #js[0, 150]}}
+             :config #js{:staticPlot true}})))
